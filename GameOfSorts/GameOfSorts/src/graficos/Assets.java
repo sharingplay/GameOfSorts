@@ -22,7 +22,11 @@ public class Assets {
 	public static BufferedImage[] dragon2;
 	public static BufferedImage[] dragon3;
 	
-	public static void init() {//sirve para cargar todos los efectos 1 sola vez
+	/**
+	 * Crea las listas de imagenes para el manejo de sprites
+	 * Se recortan las imagenes y se asignan a la lista
+	 */
+	public static void init() {
 		jugadorVolando = new BufferedImage[4];
 		dragon1 = new BufferedImage[5];
 		dragon2 = new BufferedImage[5];

@@ -9,7 +9,6 @@ public class SpriteSheet {
 		this.hoja = hoja;
 	}
 	/**
-	 * 
 	 * @param x coordenada X de la imagen
 	 * @param y coordenada Y de la imagen
 	 * @param ancho de la imagen

@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 import Logica.Game;
 import disparos.ControlDisparo;
 import graficos.Assets;
-import graficos.Animacion;
+
 
 public class Jugador extends Creature{
 	public static final int velocidadDisp = 4;
@@ -15,7 +15,13 @@ public class Jugador extends Creature{
 	private ControlDisparo controlDisp;
 	private int contador,contadorIteracion,puntaje;
 	private boolean puedeDisparar=true;
-	
+	/**
+	 * Constructor del jugador 
+	 * @param juego
+	 * @param x, posicion en x
+	 * @param y, posicion en y
+	 * @param cd, control de disparo para el manejo de los proyectiles
+	 */
 	public Jugador(Game juego,float x, float y,ControlDisparo cd) {
 		super(juego, x, y);
 		this.ancho = 100;
@@ -24,10 +30,13 @@ public class Jugador extends Creature{
 		this.salud = 3;
 		this.velocidad = 5;
 		this.controlDisp = cd;
-		this.hitbox = new Rectangle((int)getX(),(int)getY(),getAncho(),getAlto());
+		this.hitbox = new Rectangle((int)getX(),(int)getY(),getAncho(),getAlto());//hitbox del jugador segun su posicion
 	}
 
 	@Override
+	/**
+	 * actualiza constantemente la posicion del jugador
+	 */
 	public void update() {//mueve la imagen
 		this.contadorIteracion++;
 		updateHitbox();
@@ -44,16 +53,23 @@ public class Jugador extends Creature{
 	}
 	
 	@Override
+	/**
+	 * dibuja el jugador en pantalla
+	 */
 	public void render(Graphics g) {
 		g.drawImage(Assets.jugadorVolando[this.contador],(int)x,(int)y,getAncho(),getAlto(),null);
 		//g.drawRect((int)hitbox.getX(),(int)hitbox.getY(),(int)hitbox.getWidth(),(int)hitbox.getHeight());
 		controlDisp.update(g);
 	}
-	
+	/**
+	 * actualiza el hitbox del jugador segun su posicion actual
+	 */
 	public void updateHitbox() {
 		this.hitbox = new Rectangle((int)getX(),(int)getY()+25,100,50);
 		}	
-	
+	/**
+	 * Cambia los valores de (x,y) del jugador y dispara de acuerdo a los controles pulsados.
+	 */
 	private void getInput() {
 		movimientoX = 0;
 		movimientoY = 0;
@@ -83,6 +99,7 @@ public class Jugador extends Creature{
 		if (juego.getControles().izq) {
 			movimientoX = -velocidad;
 		}
+		//Disparo del jugador
 		if(juego.getControles().space) {
 				if(puedeDisparar==true){
 				controlDisp.addProyectil(this.x+75, this.y+70);

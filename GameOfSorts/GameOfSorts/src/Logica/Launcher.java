@@ -66,11 +66,7 @@ public class Launcher {
                *loggerSorts.tipoSort();
                *internalSys.mensajeSecreto();
               */
-             
-            
-
             LOGGER.log(Level.INFO, "Probando manejo de excepciones");
-
             try{
                      throw new Exception("ERROR DE CONTROL DE FLUJO DE PROGRAMA"); 
             }catch(Exception e){

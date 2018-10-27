@@ -26,6 +26,15 @@ public class FabricaDragones {
 	 * Eliminar sets del dragon
 	 * Solo asignar imagen y posicion x,y 
 	 */
+	/**
+	 * Se crea un dragon segun el tipo y se le asignan sus stats e imagen
+	 * @param tipo tipo de dragon a crear
+	 * @param id, id unico
+	 * @param cd, control de disparo
+	 * @param x posicion en X
+	 * @param y posicion en Y
+	 * @return devuelve un dragon y lo agrega a la lista
+	 */
 	public Dragon nuevoDragon (int tipo,String id,ControlDisparo cd, float x,float y) {
 		Dragon dragon = new Dragon(game, id, tipo,cd, x, y);
 		if (tipo == 0) {
@@ -76,6 +85,10 @@ public class FabricaDragones {
 		}
 		return null;
 	}
+	/**
+	 * Asigna edad a los dragones del 1 al 1000 y verifica que no se repita
+	 * @return edad para asignar al dragon
+	 */
 	public int generarEdad() {
 		Random random = new Random();
 		int edad = random.nextInt(1000)+1;
@@ -108,7 +121,10 @@ public class FabricaDragones {
 		}
 		
 	}*/
-	
+	/**
+	 * Elimina un dragon de la lista
+	 * @param dragon, dragon a eliminar
+	 */
 	public void removeDragon(Dragon dragon) {
 		lista.delete(dragon);
 		loggerDragon.dragonEliminado(dragon.getID());

@@ -32,10 +32,13 @@ public class Estado_Juego extends Estado {
 	private String infoDragon;
 	private Estado gameOverState;
 	LoggerJugador loggerJugador = new LoggerJugador();
-	
+	/**
+	 * Constructor del estado de juego
+	 * @param juego
+	 */
 	public Estado_Juego(Game juego) {
-		super(juego);
 		
+		super(juego);
 		colorLetras = Color.WHITE;
 		fuenteLetras = new Font ("Century Gothic",Font.PLAIN,19);
 		colorPuntaje = Color.RED;
@@ -45,12 +48,11 @@ public class Estado_Juego extends Estado {
 		this.jugador = new Jugador(juego,100,100, cd);
 		this.fabDrag = new FabricaDragones(juego);
 		
-		 /**
+		 /*
 		  * for nodo in lista de maria, d.getTipo(), d.FabDrag.nuevoDrag(d.getTipo());
-		  **/
+		  */
 		for (int i=500;i<1000;i+=200) {
 			for (int j=200; j<601;j+=100) {
-				
 			fabDrag.nuevoDragon(j%3, "A",cd, i+200,j ); 
 		}
 	}
@@ -82,7 +84,9 @@ public class Estado_Juego extends Estado {
 			}
 		}
 	}
-	
+	/**
+	 * verifica las colisiones entre el jugador y los dragones
+	 */
 	public void colisionJugador() {
 		int contador = 0;
 		for (Nodo <Dragon> d = fabDrag.lista.getPrimero(); d != null; d = d.getSiguiente()) {
@@ -94,7 +98,6 @@ public class Estado_Juego extends Estado {
 					}
 				if(d.getValor().getX()<=0) {
 					contador++;
-					System.out.println(d);
 					if (contador==1) {
 						fabDrag.removeDragon(d.getValor());
 						jugador.setSalud(jugador.getSalud()-1);
@@ -116,7 +119,9 @@ public class Estado_Juego extends Estado {
 				}
 			}
 		}
-	
+	/**
+	 * Hace que los dragones disparen
+	 */
 	public void disparoDragones() {
 		for (Nodo <Dragon> d = fabDrag.lista.getPrimero(); d != null; d = d.getSiguiente()) {	
 			d.getValor().disparoDragones();
@@ -156,7 +161,10 @@ public class Estado_Juego extends Estado {
 			xFondo=0;
 		}
 	}
-	//Dibuja corazones de acuerdo a la vida del jugador
+	/**
+	 * Dibuja los corazones en pantalla segun la vida del jugador
+	 * @param g indica donde dibujar
+	 */
 	public void updateVida(Graphics g) {
 		int j = 200;
 		if (jugador.getSalud()==2) {
@@ -176,7 +184,11 @@ public class Estado_Juego extends Estado {
 		}
 	}
 	
-	@Override // actualiza las imagenes en pantalla
+	@Override
+	/**
+	 * Actualiza los dragones y verifica colisiones
+	 * Revisa si se hace click en un dragon y muestra la informacion
+	 */
 	public void update() {
 		colisionProyectil();
 		colisionJugador();
@@ -189,7 +201,6 @@ public class Estado_Juego extends Estado {
 			if(juego.getMouseManager().isLeftPressed()) {
 				if (hitboxDragon.contains(punto)) {
 					infoDragon = d.getValor().getDatos();
-					System.out.println(infoDragon);
 				}	
 			}
 		}
@@ -199,7 +210,7 @@ public class Estado_Juego extends Estado {
 			choque = true;
 		}
 	}
-	/*
+	/**
 	 * Funcion que separa el string cada /n. Tomado de https://stackoverflow.com/questions/4413132/problems-with-newline-in-graphics2d-drawstring
 	 */
 	void drawString(Graphics g, String text, int x, int y) {
@@ -207,7 +218,10 @@ public class Estado_Juego extends Estado {
 	        g.drawString(line, x, y += g.getFontMetrics().getHeight());
 	}
 
-	@Override // dibuja las imagenes en pantalla
+	@Override
+	/**
+	 * dibuja en pantalla
+	 */
 	public void render(Graphics g) {
 		updateFondo(g);
 		g.drawImage(Assets.cielo,xFondo,0,null);
@@ -221,9 +235,8 @@ public class Estado_Juego extends Estado {
 		if(infoDragon !=null) {
 		drawString(g,infoDragon, 1490, 130);
 		
-		System.out.println(jugador.getPuntaje());
+		//System.out.println(jugador.getPuntaje());
 		}
-		
 		updateVida(g);
 		for (Nodo <Dragon> d = fabDrag.lista.getPrimero(); d != null; d = d.getSiguiente()) {
 			d.getValor().render(g);

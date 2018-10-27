@@ -22,8 +22,6 @@ import disparos.Proyectil;
 import graficos.Assets;
 import graficos.Display;
 
-
-//implementa Runnable para usar hilos
 public class Game implements Runnable {
 	private Display display;
 	
@@ -31,7 +29,6 @@ public class Game implements Runnable {
 	private int ancho;
 	private int alto;
 	private FabricaDragones fabDrag;
-	private ListaSimple listaDibujar = null;
 	
 	private boolean ejecutando = false;
 	private Thread hilo;
@@ -49,7 +46,12 @@ public class Game implements Runnable {
 	//Input
 	private Controles manejoControles;
 	private MouseManager mouseManager;
-	
+	/**
+	 * Constructor del juego
+	 * @param titulo, titulo del juego
+	 * @param ancho, ancho de la pantalla
+	 * @param alto, alto de la pantalla
+	 */
 	public Game(String titulo,int ancho,int alto) {
 		this.ancho = ancho;
 		this.alto = alto;
@@ -57,8 +59,10 @@ public class Game implements Runnable {
 		manejoControles = new Controles();	
 		mouseManager= new MouseManager();
 	}
-	
-	private void init() {//inicializa
+	/**
+	 * incializacion de los componentes del display, instanciacion de los estados.
+	 */
+	private void init() {
 		display = new Display(titulo,ancho,alto);
 		display.getFrame().addMouseListener(mouseManager);
 		display.getFrame().addMouseMotionListener(mouseManager);
@@ -67,7 +71,7 @@ public class Game implements Runnable {
 		display.getCanvas().addKeyListener(manejoControles);
 		display.getCanvas().addMouseListener(mouseManager);
 		Assets.init();//inicializa todas las imagenes 1 vez
-		/**
+		/*
 		 * Enviar y recibir la lista vacia a Mariana 
 		 */
 		estadoJuego = new Estado_Juego(this);
@@ -77,34 +81,35 @@ public class Game implements Runnable {
 
 	}
 	
-	
+	/**
+	 * actualiza el juego segun el estado en el que se encuentre
+	 */
 	private void update() {//actualiza en el estado en el que se encuentre
 		manejoControles.update();//actualiza al jugador de acuerdo a sus controles
-		
 		if (Estado.getEstado()!=null) {
 			Estado.getEstado().update();
 		}
 	}
-	private void render() {//dibuja 
+	/**
+	 * dibuja en pantalla
+	 */
+	private void render() {
 		bs = display.getCanvas().getBufferStrategy();
 		if (bs == null) {
 			display.getCanvas().createBufferStrategy(3);
 			return;
 		}
 		g = bs.getDrawGraphics();
-		
-		//limpia todo lo que hay en pantalla
-		g.clearRect(0, 0, ancho, alto);
-		//Se agrega lo que se quiere dibujar en pantalla
-		if (Estado.getEstado()!=null) {
+		g.clearRect(0, 0, ancho, alto); //limpia todo lo que hay en pantalla
+		if (Estado.getEstado()!=null) { //Se dibuja lo que hay en la pantalla de acuerdo al estado
 			Estado.getEstado().render(g);
 		}
 		bs.show();
 		g.dispose();
 	}
-	public void run() { //
-		init();
+	public void run() {//se ejecuta el hilo
 		
+		init();
 		int fps = 60;
 		double timePerTick = 1000000000/fps;//cuantas veces se quiere que se actualice en 1 segundo
 		double delta = 0;//tiempo que queda antes de actualizar nuevamente

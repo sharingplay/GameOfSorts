@@ -2,14 +2,11 @@ package graficos;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
 
 public class ImageLoader {
 	/**
-	 * 
 	 * @param caminoDeImagen localizacion de la imagen que se quiere cargar
 	 * @return carga la imagen
 	 */
