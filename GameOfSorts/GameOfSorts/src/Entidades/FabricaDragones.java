@@ -39,7 +39,7 @@ public class FabricaDragones {
 		Dragon dragon = new Dragon(game, id, tipo,cd, x, y);
 		if (tipo == 0) {
 			Random random = new Random();
-			int VelocidadDisp = random.nextInt(100)+5;
+			int VelocidadDisp = random.nextInt(100)+45;
 			dragon.setAlto(100);
 			dragon.setAncho(100);
 			dragon.setSalud(3);
@@ -55,7 +55,7 @@ public class FabricaDragones {
 		
 		else if (tipo == 2) {
 			Random random = new Random();
-			int VelocidadDisp = random.nextInt(100)+5;
+			int VelocidadDisp = random.nextInt(100)+45;
 			dragon.setAlto(100);
 			dragon.setAncho(100);
 			dragon.setSalud(2);
@@ -70,7 +70,7 @@ public class FabricaDragones {
 		}
 		else if (tipo == 1) {
 			Random random = new Random();
-			int VelocidadDisp = random.nextInt(100)+5;
+			int VelocidadDisp = random.nextInt(100)+45;
 			dragon.setAlto(100);
 			dragon.setAncho(100);
 			dragon.setSalud(1);
@@ -91,7 +91,7 @@ public class FabricaDragones {
 	 */
 	public int generarEdad() {
 		Random random = new Random();
-		int edad = random.nextInt(1000)+1;
+		int edad = random.nextInt(1000)+15;
 		for (Nodo <Dragon> d = lista.getPrimero(); d != null; d = d.getSiguiente()) {
 			if (edad == d.getValor().getEdad()) {
 				generarEdad();

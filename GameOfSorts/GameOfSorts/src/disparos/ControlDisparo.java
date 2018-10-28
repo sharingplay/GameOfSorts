@@ -1,6 +1,7 @@
 package disparos;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import Estructuras.ListaSimple;
 import Estructuras.Nodo;
@@ -37,6 +38,7 @@ public class ControlDisparo {
 	 */
 	public void addProyectilEnemigos( float x, float y) {
 		listaProyectilEnemigos.add(new Proyectil(game, x, y,false));
+		
 	} 
 	/**
 	 * Borra el proyectil de la lista del jugador

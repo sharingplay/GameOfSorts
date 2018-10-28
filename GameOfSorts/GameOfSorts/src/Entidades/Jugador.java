@@ -87,26 +87,28 @@ public class Jugador extends Creature{
 			y = 899;
 		}
 		//Desplazamiento del jugador
-		if (juego.getControles().arriba) {
+		if (juego.getControles().arriba || juego.getControles().yJoyStick()<-100) {
 			movimientoY = -velocidad;
 		}
-		if (juego.getControles().abajo) {
+		if (juego.getControles().abajo || juego.getControles().yJoyStick()>100) {
 			movimientoY = velocidad;
 		}
-		if (juego.getControles().der) {
+		if (juego.getControles().der || juego.getControles().xJoyStick()>100) {
 			movimientoX = velocidad;
 		}
-		if (juego.getControles().izq) {
+		if (juego.getControles().izq || juego.getControles().xJoyStick()<-100) {
+			System.out.println(juego.getControles().xJoyStick());
 			movimientoX = -velocidad;
+
 		}
 		//Disparo del jugador
-		if(juego.getControles().space) {
+		if(juego.getControles().space || juego.getControles().botJoyStick()==0 ) {
 				if(puedeDisparar==true){
 				controlDisp.addProyectil(this.x+75, this.y+70);
 				puedeDisparar=false ;
 				}
 			}
-		if(!juego.getControles().space) {
+		if(!juego.getControles().space && juego.getControles().botJoyStick()==1 ) {
 			puedeDisparar=true;
 		}
 	}

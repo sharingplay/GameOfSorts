@@ -1,3 +1,8 @@
+/*
+ * Parte de este codigo fue recopilado de:
+ * D. (2018, January 25). Logs en Java con Java.util.logging. 
+ * Retrieved from https://hashblogeando.wordpress.com/2015/08/22/logs-en-java-con-java-util-logging/
+ */
 package Logica;
 import bitacora.subnivel.LoggerDragon;
 import bitacora.subnivel.LoggerSorts;

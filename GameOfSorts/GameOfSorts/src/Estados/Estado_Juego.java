@@ -51,9 +51,9 @@ public class Estado_Juego extends Estado {
 		 /*
 		  * for nodo in lista de maria, d.getTipo(), d.FabDrag.nuevoDrag(d.getTipo());
 		  */
-		for (int i=500;i<1000;i+=200) {
-			for (int j=200; j<601;j+=100) {
-			fabDrag.nuevoDragon(j%3, "A",cd, i+200,j ); 
+		for (int i=100;i<1000;i+=10) {
+			for (int j=0; j<41;j+=10) {
+			fabDrag.nuevoDragon(j%3, "A",cd, i*15,j*12 ); 
 		}
 	}
 		
@@ -194,6 +194,7 @@ public class Estado_Juego extends Estado {
 		colisionJugador();
 		colision();
 		disparoDragones();
+		//colisionProyectiles();
 		for (Nodo <Dragon> d = fabDrag.lista.getPrimero(); d != null; d = d.getSiguiente()) {
 			Rectangle hitboxDragon = d.getValor().getHitbox();
 			d.getValor().update();
@@ -239,8 +240,10 @@ public class Estado_Juego extends Estado {
 		}
 		updateVida(g);
 		for (Nodo <Dragon> d = fabDrag.lista.getPrimero(); d != null; d = d.getSiguiente()) {
+			if (d.getValor().getX()<=1440) {
 			d.getValor().render(g);
 			//d.getValor().getControlDisp().update(g);
+			}
 		}
 		jugador.render(g);
 		cd.update(g);

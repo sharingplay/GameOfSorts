@@ -112,8 +112,10 @@ public class Dragon extends Creature {
 	
 	public void disparoDragones() {
 		if (cont == getContadorDisparo()) {
+			if (this.x<=1440) {
 			controlDisp.addProyectilEnemigos(getX(), getY()+10);
 			cont = 0;
+			}
 		}
 		else {
 			cont++;
@@ -157,13 +159,13 @@ public class Dragon extends Creature {
 		movimientoX=-1;
 		if (contadorIteracion%40==0) {
 			if (subir) {
-				movimientoY=1;
+				movimientoY=(float) 0.5;
 				if (contador%1000==0) {
 					subir = false;
 				}
 			}
 			else {
-				movimientoY=-1;
+				movimientoY=(float) -0.5;
 				if (contador%1000==0) {
 					subir = true;
 				}

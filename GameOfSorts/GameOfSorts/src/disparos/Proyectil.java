@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import Entidades.Entidad;
 import Entidades.Jugador;
+import Estructuras.ListaSimple;
 import Logica.Game;
 import graficos.Assets;
 import java.awt.Rectangle;

@@ -1,3 +1,10 @@
+/*
+ * Partes de este codigo fueron tomadas de
+ *-ForeignGuyMike. “Java 2D Game Programming Platformer Tutorial - Part 1 - The Game State Manager.” 
+ * YouTube, YouTube, 13 Apr. 2013, www.youtube.com/watch?v=9dzhgsVaiSo&list=PL-2t7SM0vDfcIedoMIghzzgQqZq45jYGv.
+ * -CodeNMore. “4 - Threads & Game Loop - New Beginner 2D Game Programming.” 
+ * YouTube, YouTube, 11 Dec. 2014, www.youtube.com/watch?v=vFRuEgEdO9Q&index=4&list=PLah6faXAgguMnTBs3JnEJY0shAc18XYQZ.
+ */
 package Logica;
 import java.awt.Graphics;
 import java.awt.Point;
